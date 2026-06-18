@@ -1,0 +1,25 @@
+services:
+  arcane-grid:
+    build: .
+    image: arcane-grid:latest
+    container_name: arcane-grid
+    restart: unless-stopped
+    # Join the same Docker network as your Nginx Proxy Manager container so NPM
+    # can reach this by name. Then in NPM's Proxy Host use:
+    #   Forward Hostname/IP: arcane-grid
+    #   Forward Port:        80
+    networks:
+      - npm-network
+
+    # --- Alternative: skip the shared network and publish a host port instead ---
+    # Remove the `networks:` block above and uncomment below, then point NPM at
+    # http://<your-host-ip>:8080
+    # ports:
+    #   - "8080:80"
+
+networks:
+  npm-network:
+    external: true
+    # Set this to the network your Nginx Proxy Manager is on.
+    # List networks with:  docker network ls
+    name: nginx-proxy-manager_default

@@ -36,6 +36,27 @@ domain or sub-path.
   The included [`deploy-pages.yml`](.github/workflows/deploy-pages.yml) builds and
   deploys on every push to `main`.
 
+### Docker / behind Nginx Proxy Manager
+
+A multi-stage [`Dockerfile`](Dockerfile) builds the site and serves it from a tiny
+nginx image (no Node at runtime).
+
+```sh
+docker compose up -d --build   # builds the image and starts the `arcane-grid` container
+```
+
+Then add a **Proxy Host** in Nginx Proxy Manager:
+
+- **Domain Names**: your domain/subdomain
+- **Scheme**: `http`
+- **Forward Hostname / IP**: `arcane-grid` (the container name — requires NPM and this
+  container to share a Docker network; set it in [`docker-compose.yml`](docker-compose.yml))
+- **Forward Port**: `80`
+- **SSL** tab: request a Let's Encrypt cert + Force SSL + HTTP/2
+
+(Alternatively, publish a host port in `docker-compose.yml` and forward NPM to
+`http://<host-ip>:8080`.) To update after code changes: `docker compose up -d --build`.
+
 ## License & attribution
 
 Spell data: **D&D 5e SRD 5.1**, used under the OGL 1.0a / CC-BY-4.0. Not affiliated
