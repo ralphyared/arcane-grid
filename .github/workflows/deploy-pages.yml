@@ -3,8 +3,9 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [main]
+  # Manual only: this project is self-hosted (Docker behind Nginx Proxy Manager),
+  # so Pages deploys don't run on push. Enable Pages (Settings -> Pages -> Source:
+  # GitHub Actions) and run this manually if you ever want a Pages mirror.
   workflow_dispatch:
 
 permissions:

@@ -32,9 +32,9 @@ domain or sub-path.
 
 - **Vercel / Netlify / Cloudflare Pages** — framework preset “Vite”; build command
   `npm run build`, output directory `dist`.
-- **GitHub Pages** — push to GitHub, then Settings → Pages → Source: **GitHub Actions**.
-  The included [`deploy-pages.yml`](.github/workflows/deploy-pages.yml) builds and
-  deploys on every push to `main`.
+- **GitHub Pages** — enable Settings → Pages → Source: **GitHub Actions**, then run the
+  included [`deploy-pages.yml`](.github/workflows/deploy-pages.yml) manually (it's
+  `workflow_dispatch`-only, since this project is normally self-hosted).
 
 ### Docker / behind Nginx Proxy Manager
 
