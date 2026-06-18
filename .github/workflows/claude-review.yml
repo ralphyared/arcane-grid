@@ -36,6 +36,8 @@ jobs:
           prompt: |
             Review this pull request — the PR branch is already checked out.
             Run `gh pr diff` to see exactly what changed and review only that.
+            Use Read/Grep/Glob to inspect related files for context when needed.
+            Work efficiently and finish well within your turn budget.
 
             Focus on, in priority order:
             - Correctness and likely bugs
@@ -51,6 +53,6 @@ jobs:
             `gh pr comment`. Be concise and do not nitpick formatting (Prettier and
             ESLint already gate that). If the PR looks good, say so plainly.
           claude_args: |
-            --allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*)"
+            --allowedTools "Read,Grep,Glob,mcp__github_inline_comment__create_inline_comment,Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh pr comment:*)"
             --model claude-sonnet-4-6
-            --max-turns 20
+            --max-turns 30
