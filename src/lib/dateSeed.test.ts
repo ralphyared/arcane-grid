@@ -21,6 +21,6 @@ describe('dateSeed', () => {
   it('renders a human-readable date in UTC regardless of local zone', () => {
     const pretty = prettyDate('2026-06-18')
     expect(pretty).toMatch(/2026/)
-    expect(pretty).toMatch(/June|Jun/)
+    expect(pretty).toMatch(/\b18\b/)
   })
 })
