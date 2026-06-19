@@ -20,6 +20,9 @@ concurrency:
 
 jobs:
   review:
+    # Skip cleanly (rather than error) on commits @claude itself pushed —
+    # the action blocks bot-initiated runs to avoid review/edit loops.
+    if: github.actor != 'claude[bot]'
     runs-on: ubuntu-latest
     permissions:
       contents: read
